@@ -1,6 +1,6 @@
 {
      "type": "record",
-     "namespace": "com.sunilvb.demo",
+     "namespace": "com.example.kafka.demokafka",
      "name": "Order",
      "version": "1",
      "fields": [

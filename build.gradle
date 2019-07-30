@@ -4,10 +4,6 @@ buildscript {
 			url "http://packages.confluent.io/maven/"
 		}
 	}
-
-	dependencies {
-		classpath "io.confluent:kafka-schema-registry:5.0.0"
-	}
 }
 
 plugins {
@@ -35,3 +31,17 @@ dependencies {
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
 
+sourceSets {
+	main {
+		java {
+			srcDir 'build/generated/avaro-schema'
+		}
+	}
+}
+
+task generateAvro(type: com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask) {
+	source("src/main/resources/avro/order.avsc")
+	outputDir = file("$buildDir/generated/avaro-schema")
+}
+
+compileJava.source(generateAvro.outputs)
