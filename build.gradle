@@ -1,6 +1,20 @@
+buildscript {
+	repositories {
+		maven {
+			url "http://packages.confluent.io/maven/"
+		}
+	}
+
+	dependencies {
+		classpath "io.confluent:kafka-schema-registry:5.0.0"
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
+	id "com.commercehub.gradle.plugin.avro" version "0.9.1"
+	id "com.github.imflog.kafka-schema-registry-gradle-plugin" version "0.7.0"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -20,3 +34,4 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
+
