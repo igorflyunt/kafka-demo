@@ -11,15 +11,22 @@ public class Producer {
     private static final String KAFKA_TOPIC = "users";
     private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, User> kafkaTemplate;
 
     @Autowired
-    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
+    public Producer(KafkaTemplate<String, User> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(String message) {
-        log.info(String.format("Producing message[%s]", message));
-        kafkaTemplate.send(KAFKA_TOPIC, message);
+    public void sendMessage(String username) {
+        log.info(String.format("Producing username[%s]", username));
+        final User user = User.newBuilder()
+                              .setUserId(1)
+                              .setUsername(username)
+                              .setFirstName("Joe")
+                              .setLastName("Average")
+                              .build();
+//        kafkaTemplate.send(new ProducerRecord<>(KAFKA_TOPIC, user)); option 1
+        kafkaTemplate.send(KAFKA_TOPIC, user); // option 2
     }
 }

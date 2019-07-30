@@ -13,7 +13,7 @@ public class KafkaEndpoint {
     public KafkaEndpoint(Producer producer) {this.producer = producer;}
 
     @PostMapping("/publish")
-    public void sendMsgToKafkaTopic(@RequestParam("msg") String message) {
-        producer.sendMessage(message);
+    public void sendUsername(@RequestParam("name") String name) {
+        producer.sendMessage(name);
     }
 }
