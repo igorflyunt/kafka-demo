@@ -1,0 +1,12 @@
+{
+     "type": "record",
+     "namespace": "com.example.kafka.demokafka",
+     "name": "User",
+     "version": "1",
+     "fields": [
+       { "name": "user_id", "type": "long", "doc": "Id of the user registered" },
+       { "name": "username", "type": "string", "doc": "Username of the user registered" },
+       { "name": "first_name", "type": "string", "doc": "First Name of Customer" },
+       { "name": "last_name", "type": "string", "doc": "Last Name of Customer" }
+     ]
+}
