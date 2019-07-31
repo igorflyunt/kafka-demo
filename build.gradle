@@ -28,8 +28,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.kafka:spring-kafka'
-	compile 'org.apache.avro:avro:1.9.0'
-	compile 'io.confluent:kafka-avro-serializer:5.2.1'
+	implementation 'org.apache.avro:avro:1.9.0'
+	implementation 'io.confluent:kafka-avro-serializer:5.2.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
@@ -37,7 +37,7 @@ dependencies {
 sourceSets {
 	main {
 		java {
-			srcDir 'build/generated/avaro-schema'
+			srcDir "$buildDir/generated/avro-schema"
 		}
 	}
 }
@@ -50,7 +50,7 @@ task generateAvro(type: com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask)
 compileJava.source(generateAvro.outputs)
 
 schemaRegistry {
-	url = 'http://localhost:8081'
+	url = 'http://localhost:8086'
 	register {
 		subject('user', 'src/main/resources/avro/user.avsc')
 	}

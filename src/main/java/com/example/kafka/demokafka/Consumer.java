@@ -11,6 +11,6 @@ public class Consumer {
 
     @KafkaListener(topics = "users", groupId = "group-id")
     public void consume(User user) {
-        log.info(String.format("Username consumed[%s]", user.getUsername()));
+        log.info(String.format("Consumed user [%s]", user));
     }
 }

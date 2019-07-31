@@ -23,10 +23,9 @@ public class Producer {
         final User user = User.newBuilder()
                               .setUserId(1)
                               .setUsername(username)
-                              .setFirstName("Joe")
-                              .setLastName("Average")
+                              .setFirstName("John")
+                              .setLastName("Smith")
                               .build();
-//        kafkaTemplate.send(new ProducerRecord<>(KAFKA_TOPIC, user)); option 1
-        kafkaTemplate.send(KAFKA_TOPIC, user); // option 2
+        kafkaTemplate.send(KAFKA_TOPIC, user);
     }
 }
